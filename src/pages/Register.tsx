@@ -13,7 +13,11 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState<UserRole | null>(null);
+  const [searchParams] = useSearchParams();
+  const initialRole = searchParams.get("role") as UserRole | null;
+  const [role, setRole] = useState<UserRole | null>(
+    initialRole === "oficina" || initialRole === "mecanico" ? initialRole : null
+  );
   const [loading, setLoading] = useState(false);
   const { register } = useAuth();
   const navigate = useNavigate();
