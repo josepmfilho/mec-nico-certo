@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth, type UserRole } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,7 +13,11 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState<UserRole | null>(null);
+  const [searchParams] = useSearchParams();
+  const initialRole = searchParams.get("role") as UserRole | null;
+  const [role, setRole] = useState<UserRole | null>(
+    initialRole === "oficina" || initialRole === "mecanico" ? initialRole : null
+  );
   const [loading, setLoading] = useState(false);
   const { register } = useAuth();
   const navigate = useNavigate();

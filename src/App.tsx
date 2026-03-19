@@ -13,6 +13,9 @@ import OficinaDashboard from "./pages/oficina/OficinaDashboard";
 import MecanicoDashboard from "./pages/mecanico/MecanicoDashboard";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import NotFound from "./pages/NotFound";
+import Sobre from "./pages/Sobre";
+import Termos from "./pages/Termos";
+import Privacidade from "./pages/Privacidade";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +30,11 @@ const App = () => (
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/cadastro/oficina" element={<Navigate to="/register?role=oficina" replace />} />
+            <Route path="/cadastro/mecanico" element={<Navigate to="/register?role=mecanico" replace />} />
+            <Route path="/sobre" element={<Sobre />} />
+            <Route path="/termos" element={<Termos />} />
+            <Route path="/privacidade" element={<Privacidade />} />
 
             {/* Oficina Routes */}
             <Route path="/oficina/dashboard" element={
