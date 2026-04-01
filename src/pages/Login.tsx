@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Wrench, Eye, EyeOff } from "lucide-react";
+import { Wrench, Eye, EyeOff, Shield } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Separator } from "@/components/ui/separator";
 
@@ -17,6 +17,19 @@ const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  const handleQuickLogin = async (role: "oficina" | "mecanico" | "admin") => {
+    setLoading(true);
+    try {
+      const emails = { oficina: "oficina@demo.com", mecanico: "mecanico@demo.com", admin: "admin@demo.com" };
+      await login(emails[role], "demo123");
+      navigate(`/${role}/dashboard`);
+    } catch {
+      toast({ title: "Erro ao entrar", description: "Erro inesperado.", variant: "destructive" });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -82,6 +95,27 @@ const Login = () => {
 
           <div className="my-6 flex items-center gap-3">
             <Separator className="flex-1" />
+            <span className="text-xs text-muted-foreground">acesso rápido (demo)</span>
+            <Separator className="flex-1" />
+          </div>
+
+          <div className="grid grid-cols-3 gap-2">
+            <Button variant="outline" className="flex-col h-auto py-3 gap-1 border-primary/30 hover:bg-primary/10" onClick={() => handleQuickLogin("oficina")} disabled={loading}>
+              <Wrench className="h-4 w-4 text-primary" />
+              <span className="text-xs font-semibold">Oficina</span>
+            </Button>
+            <Button variant="outline" className="flex-col h-auto py-3 gap-1 border-green-600/30 hover:bg-green-50" onClick={() => handleQuickLogin("mecanico")} disabled={loading}>
+              <Wrench className="h-4 w-4 text-green-600" />
+              <span className="text-xs font-semibold">Mecânico</span>
+            </Button>
+            <Button variant="outline" className="flex-col h-auto py-3 gap-1 border-purple-600/30 hover:bg-purple-50" onClick={() => handleQuickLogin("admin")} disabled={loading}>
+              <Shield className="h-4 w-4 text-purple-600" />
+              <span className="text-xs font-semibold">Admin</span>
+            </Button>
+          </div>
+
+          <div className="my-4 flex items-center gap-3">
+            <Separator className="flex-1" />
             <span className="text-xs text-muted-foreground">ou</span>
             <Separator className="flex-1" />
           </div>
@@ -99,10 +133,6 @@ const Login = () => {
               <Link to="/cadastro/mecanico" className="font-semibold text-mecanico hover:underline">Sou mecânico</Link>
             </div>
           </div>
-
-          <p className="mt-4 text-center text-xs text-muted-foreground">
-            Dica: use "mecanico@" ou "admin@" no e-mail para testar outros perfis
-          </p>
         </CardContent>
       </Card>
     </div>
