@@ -59,6 +59,12 @@ const Landing = () => {
           </Link>
 
           <div className="hidden items-center gap-6 md:flex">
+            <Link to="/para-oficinas" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+              Para oficinas
+            </Link>
+            <Link to="/para-mecanicos" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+              Para mecânicos
+            </Link>
             <a href="#como-funciona" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               Como funciona
             </a>

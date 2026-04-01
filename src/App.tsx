@@ -28,6 +28,8 @@ import Sobre from "./pages/Sobre";
 import Termos from "./pages/Termos";
 import Privacidade from "./pages/Privacidade";
 import Precos from "./pages/Precos";
+import ParaOficinas from "./pages/ParaOficinas";
+import ParaMecanicos from "./pages/ParaMecanicos";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +42,8 @@ const App = () => (
         <AuthProvider>
           <Routes>
             <Route path="/" element={<Landing />} />
+            <Route path="/para-oficinas" element={<ParaOficinas />} />
+            <Route path="/para-mecanicos" element={<ParaMecanicos />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/cadastro/oficina" element={<CadastroOficina />} />
