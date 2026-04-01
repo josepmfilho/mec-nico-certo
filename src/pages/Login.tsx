@@ -18,6 +18,19 @@ const Login = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
+  const handleQuickLogin = async (role: "oficina" | "mecanico" | "admin") => {
+    setLoading(true);
+    try {
+      const emails = { oficina: "oficina@demo.com", mecanico: "mecanico@demo.com", admin: "admin@demo.com" };
+      await login(emails[role], "demo123");
+      navigate(`/${role}/dashboard`);
+    } catch {
+      toast({ title: "Erro ao entrar", description: "Erro inesperado.", variant: "destructive" });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
