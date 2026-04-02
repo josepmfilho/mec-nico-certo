@@ -58,8 +58,8 @@ const CadastroMecanico = () => {
     setLoading(true);
     try {
       await register(email, senha, nome, "mecanico");
-      toast({ title: "Perfil criado!", description: "Bem-vindo ao MecânicoApp!" });
-      navigate("/mecanico/dashboard");
+      toast({ title: "Cadastro enviado!", description: "Seu perfil será analisado pela equipe." });
+      navigate("/mecanico/aguardando-aprovacao");
     } catch {
       toast({ title: "Erro no cadastro", variant: "destructive" });
     } finally {
