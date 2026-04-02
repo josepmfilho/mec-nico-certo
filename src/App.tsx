@@ -18,6 +18,7 @@ import MecanicoDashboard from "./pages/mecanico/MecanicoDashboard";
 import MecanicoDemandaDetalhe from "./pages/mecanico/MecanicoDemandaDetalhe";
 import MecanicoFinanceiro from "./pages/mecanico/MecanicoFinanceiro";
 import MecanicoReputacao from "./pages/mecanico/MecanicoReputacao";
+import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminUsuarios from "./pages/admin/AdminUsuarios";
 import AdminAprovacao from "./pages/admin/AdminAprovacao";
