@@ -99,7 +99,7 @@ const Login = () => {
             <Separator className="flex-1" />
           </div>
 
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-2 gap-2">
             <Button variant="outline" className="flex-col h-auto py-3 gap-1 border-primary/30 hover:bg-primary/10" onClick={() => handleQuickLogin("oficina")} disabled={loading}>
               <Wrench className="h-4 w-4 text-primary" />
               <span className="text-xs font-semibold">Oficina</span>
@@ -107,10 +107,6 @@ const Login = () => {
             <Button variant="outline" className="flex-col h-auto py-3 gap-1 border-green-600/30 hover:bg-green-50" onClick={() => handleQuickLogin("mecanico")} disabled={loading}>
               <Wrench className="h-4 w-4 text-green-600" />
               <span className="text-xs font-semibold">Mecânico</span>
-            </Button>
-            <Button variant="outline" className="flex-col h-auto py-3 gap-1 border-purple-600/30 hover:bg-purple-50" onClick={() => handleQuickLogin("admin")} disabled={loading}>
-              <Shield className="h-4 w-4 text-purple-600" />
-              <span className="text-xs font-semibold">Admin</span>
             </Button>
           </div>
 
