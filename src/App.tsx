@@ -15,6 +15,7 @@ import OficinaDashboard from "./pages/oficina/OficinaDashboard";
 import OficinaNovaDemanda from "./pages/oficina/OficinaNovaDemanda";
 import OficinaDemandaDetalhe from "./pages/oficina/OficinaDemandaDetalhe";
 import MecanicoDashboard from "./pages/mecanico/MecanicoDashboard";
+import MecanicoAguardandoAprovacao from "./pages/mecanico/MecanicoAguardandoAprovacao";
 import MecanicoDemandaDetalhe from "./pages/mecanico/MecanicoDemandaDetalhe";
 import MecanicoFinanceiro from "./pages/mecanico/MecanicoFinanceiro";
 import MecanicoReputacao from "./pages/mecanico/MecanicoReputacao";
@@ -61,6 +62,7 @@ const App = () => (
             <Route path="/oficina/chat/:id" element={<ProtectedRoute allowedRoles={["oficina"]}><Chat /></ProtectedRoute>} />
 
             {/* Mecânico Routes */}
+            <Route path="/mecanico/aguardando-aprovacao" element={<MecanicoAguardandoAprovacao />} />
             <Route path="/mecanico/dashboard" element={<ProtectedRoute allowedRoles={["mecanico"]}><MecanicoDashboard /></ProtectedRoute>} />
             <Route path="/mecanico/demandas/:id" element={<ProtectedRoute allowedRoles={["mecanico"]}><MecanicoDemandaDetalhe /></ProtectedRoute>} />
             <Route path="/mecanico/financeiro" element={<ProtectedRoute allowedRoles={["mecanico"]}><MecanicoFinanceiro /></ProtectedRoute>} />

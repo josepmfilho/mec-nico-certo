@@ -8,6 +8,7 @@ interface User {
   email: string;
   name: string;
   role: UserRole;
+  approved: boolean;
 }
 
 interface AuthContextType {
@@ -45,6 +46,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       email,
       name: email.split("@")[0],
       role,
+      approved: role !== "mecanico" ? true : false, // mecânicos precisam de aprovação
     };
     localStorage.setItem("mecanico_user", JSON.stringify(mockUser));
     setUser(mockUser);
@@ -56,6 +58,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       email,
       name,
       role,
+      approved: role !== "mecanico" ? true : false, // mecânicos precisam de aprovação
     };
     localStorage.setItem("mecanico_user", JSON.stringify(mockUser));
     setUser(mockUser);
