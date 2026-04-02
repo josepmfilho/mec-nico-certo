@@ -15,6 +15,7 @@ import OficinaDashboard from "./pages/oficina/OficinaDashboard";
 import OficinaNovaDemanda from "./pages/oficina/OficinaNovaDemanda";
 import OficinaDemandaDetalhe from "./pages/oficina/OficinaDemandaDetalhe";
 import MecanicoDashboard from "./pages/mecanico/MecanicoDashboard";
+import MecanicoAguardandoAprovacao from "./pages/mecanico/MecanicoAguardandoAprovacao";
 import MecanicoDemandaDetalhe from "./pages/mecanico/MecanicoDemandaDetalhe";
 import MecanicoFinanceiro from "./pages/mecanico/MecanicoFinanceiro";
 import MecanicoReputacao from "./pages/mecanico/MecanicoReputacao";
