@@ -22,5 +22,10 @@ export const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps) 
     return <Navigate to={`/${user.role}/dashboard`} replace />;
   }
 
+  // Mecânicos não aprovados são redirecionados para a tela de aguardando aprovação
+  if (user.role === "mecanico" && !user.approved) {
+    return <Navigate to="/mecanico/aguardando-aprovacao" replace />;
+  }
+
   return <>{children}</>;
 };
