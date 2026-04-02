@@ -18,6 +18,7 @@ import MecanicoDashboard from "./pages/mecanico/MecanicoDashboard";
 import MecanicoDemandaDetalhe from "./pages/mecanico/MecanicoDemandaDetalhe";
 import MecanicoFinanceiro from "./pages/mecanico/MecanicoFinanceiro";
 import MecanicoReputacao from "./pages/mecanico/MecanicoReputacao";
+import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminUsuarios from "./pages/admin/AdminUsuarios";
 import AdminAprovacao from "./pages/admin/AdminAprovacao";
@@ -67,6 +68,7 @@ const App = () => (
             <Route path="/mecanico/chat/:id" element={<ProtectedRoute allowedRoles={["mecanico"]}><Chat /></ProtectedRoute>} />
 
             {/* Admin Routes */}
+            <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<ProtectedRoute allowedRoles={["admin"]}><AdminDashboard /></ProtectedRoute>} />
             <Route path="/admin/usuarios" element={<ProtectedRoute allowedRoles={["admin"]}><AdminUsuarios /></ProtectedRoute>} />
             <Route path="/admin/mecanicos/aprovacao" element={<ProtectedRoute allowedRoles={["admin"]}><AdminAprovacao /></ProtectedRoute>} />
