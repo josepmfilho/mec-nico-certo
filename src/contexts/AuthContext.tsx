@@ -59,10 +59,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       email,
       name,
       role,
-      approved: role !== "mecanico" ? true : false, // mecânicos precisam de aprovação
+      approved: role !== "mecanico" ? true : false,
     };
     localStorage.setItem("mecanico_user", JSON.stringify(mockUser));
     setUser(mockUser);
+
+    // Save pending mecanicos to a separate list for admin approval
+    if (role === "mecanico") {
+      const pending: User[] = JSON.parse(localStorage.getItem("pending_mecanicos") || "[]");
+      pending.push(mockUser);
+      localStorage.setItem("pending_mecanicos", JSON.stringify(pending));
+    }
   }, []);
 
   const logout = useCallback(() => {
@@ -70,8 +77,30 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(null);
   }, []);
 
+  const getPendingMecanicos = useCallback((): User[] => {
+    return JSON.parse(localStorage.getItem("pending_mecanicos") || "[]");
+  }, []);
+
+  const approveUser = useCallback((userId: string) => {
+    // Remove from pending list
+    const pending: User[] = JSON.parse(localStorage.getItem("pending_mecanicos") || "[]");
+    const updated = pending.filter((u) => u.id !== userId);
+    localStorage.setItem("pending_mecanicos", JSON.stringify(updated));
+
+    // If the currently logged-in user is being approved, update their state
+    const currentUser = localStorage.getItem("mecanico_user");
+    if (currentUser) {
+      const parsed: User = JSON.parse(currentUser);
+      if (parsed.id === userId) {
+        parsed.approved = true;
+        localStorage.setItem("mecanico_user", JSON.stringify(parsed));
+        setUser(parsed);
+      }
+    }
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user, isLoading, login, register, logout }}>
+    <AuthContext.Provider value={{ user, isLoading, login, register, logout, approveUser, getPendingMecanicos }}>
       {children}
     </AuthContext.Provider>
   );
