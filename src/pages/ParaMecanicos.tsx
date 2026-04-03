@@ -73,27 +73,38 @@ const ParaMecanicos = () => {
       </header>
 
       {/* ═══ SEÇÃO 1 — HERO ═══ */}
-      <section className="container py-20 lg:py-32">
-        <div className="reveal mx-auto max-w-3xl text-center">
-          <h1 className="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            Sua habilidade vale mais do que R$2.153 por mês.{" "}
-            <span className="text-mecanico">Muito mais.</span>
+      <section className="relative overflow-hidden border-b border-border bg-gradient-to-b from-mecanico/5 via-background to-background py-24 lg:py-36">
+        <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-mecanico/5 blur-3xl" />
+        <div className="absolute -bottom-32 -left-32 h-80 w-80 rounded-full bg-mecanico/3 blur-3xl" />
+
+        <div className="reveal container relative mx-auto max-w-4xl text-center">
+          <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-mecanico/20 bg-mecanico/10 px-4 py-1.5 text-sm font-medium text-mecanico">
+            <Building2 className="h-3.5 w-3.5" /> Atenda oficinas com CNPJ — não desconhecidos
+          </span>
+
+          <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+            Você é bom no que faz.{" "}
+            <span className="bg-gradient-to-r from-mecanico to-mecanico/70 bg-clip-text text-transparent">Agora ganhe o que merece.</span>
           </h1>
-          <p className="mt-6 text-lg leading-relaxed text-muted-foreground sm:text-xl">
-            O MecânicoApp conecta você com oficinas que precisam do seu trabalho — com pagamento
-            garantido antes de você começar. Sem calote. Sem enrolação. Só serviço e dinheiro no PIX.
+
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
+            O salário médio CLT é R$2.153. No MecânicoApp você escolhe seus serviços, define seu preço e recebe via PIX — com pagamento garantido antes de começar.
           </p>
-          <div className="mt-8 flex justify-center">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-mecanico/30 bg-mecanico/10 px-4 py-1.5 text-sm font-medium text-mecanico">
-              <Building2 className="h-3.5 w-3.5" /> Você atende oficinas com CNPJ — não desconhecidos
-            </span>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            {["Pagamento garantido", "Você escolhe os serviços", "Sem vínculo CLT"].map((b) => (
+              <span key={b} className="inline-flex items-center gap-1.5 rounded-full border border-mecanico/30 bg-mecanico/10 px-4 py-1.5 text-sm font-medium text-mecanico">
+                <CheckCircle2 className="h-3.5 w-3.5" /> {b}
+              </span>
+            ))}
           </div>
+
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Button size="lg" className="gap-2 text-base bg-mecanico hover:bg-mecanico/90 text-mecanico-foreground" asChild>
-              <Link to="/cadastro/mecanico">Quero trabalhar com oficinas <ArrowRight className="h-4 w-4" /></Link>
+            <Button size="lg" className="h-13 gap-2 px-8 text-base bg-mecanico hover:bg-mecanico/90 text-mecanico-foreground shadow-lg shadow-mecanico/25" asChild>
+              <Link to="/cadastro/mecanico">Começar a ganhar mais <ArrowRight className="h-4 w-4" /></Link>
             </Button>
-            <Button size="lg" variant="outline" className="gap-2 text-base" asChild>
-              <a href="#dores">Entender como funciona <ArrowDown className="h-4 w-4" /></a>
+            <Button size="lg" variant="outline" className="h-13 gap-2 px-8 text-base" asChild>
+              <a href="#dores">Como funciona <ArrowDown className="h-4 w-4" /></a>
             </Button>
           </div>
         </div>

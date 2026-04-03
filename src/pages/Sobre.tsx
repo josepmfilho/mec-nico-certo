@@ -20,17 +20,26 @@ const Sobre = () => (
     </header>
 
     {/* A história */}
-    <section className="container max-w-3xl py-20">
-      <h1 className="font-display text-4xl font-bold sm:text-5xl">Por que criamos o MecânicoApp</h1>
-      <div className="mt-8 space-y-6 text-lg leading-relaxed text-muted-foreground">
-        <p>
-          Meu primeiro emprego foi aos 12 anos numa oficina mecânica, há mais de 30 anos. Já via o problema: quando faltavam mecânicos, a oficina parava. O dono ficava nas mãos dos profissionais. Os profissionais reclamavam do salário. Um ciclo que ninguém resolvia.
-        </p>
-        <p>
-          Hoje trabalho com tecnologia. Meus amigos donos de oficina reclamam exatamente da mesma coisa que eu vi décadas atrás. Decidi que era hora de usar o que sei para resolver o que vi.
-        </p>
+    <section className="relative overflow-hidden border-b border-border bg-gradient-to-b from-primary/5 via-background to-background py-24 lg:py-32">
+      <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
+      <div className="container relative max-w-3xl">
+        <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
+          Nossa história
+        </span>
+        <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+          Nascido na oficina.{" "}
+          <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Construído com tecnologia.</span>
+        </h1>
+        <div className="mt-10 space-y-6 text-lg leading-relaxed text-muted-foreground">
+          <p>
+            Meu primeiro emprego foi aos 12 anos numa oficina mecânica, há mais de 30 anos. Já via o problema: quando faltavam mecânicos, a oficina parava. O dono ficava nas mãos dos profissionais. Os profissionais reclamavam do salário. Um ciclo que ninguém resolvia.
+          </p>
+          <p>
+            Hoje trabalho com tecnologia. Meus amigos donos de oficina reclamam exatamente da mesma coisa que eu vi décadas atrás. Decidi que era hora de usar o que sei para resolver o que vi.
+          </p>
+        </div>
+        <p className="mt-8 text-base font-semibold text-foreground">— Founder, MecânicoApp</p>
       </div>
-      <p className="mt-8 text-base font-medium text-foreground">— Founder, MecânicoApp</p>
     </section>
 
     {/* Números */}

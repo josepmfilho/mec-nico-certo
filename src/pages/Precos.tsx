@@ -23,8 +23,20 @@ const Precos = () => (
     </header>
 
     {/* Hero */}
-    <section className="container max-w-4xl py-20 text-center">
-      <h1 className="font-display text-4xl font-bold sm:text-5xl">Simples assim: você só paga quando funcionar</h1>
+    <section className="relative overflow-hidden border-b border-border bg-gradient-to-b from-primary/5 via-background to-background py-24 lg:py-32">
+      <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
+      <div className="container relative max-w-4xl text-center">
+        <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
+          <Shield className="h-3.5 w-3.5" /> Transparência total
+        </span>
+        <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+          Simples assim:{" "}
+          <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">sem surpresas no preço.</span>
+        </h1>
+        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
+          Oficina usa grátis. Mecânico paga uma taxa só quando receber. Sem mensalidade, sem pegadinha.
+        </p>
+      </div>
     </section>
 
     {/* Oficinas */}

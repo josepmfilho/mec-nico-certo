@@ -82,29 +82,38 @@ const ParaOficinas = () => {
       </header>
 
       {/* ═══ SEÇÃO 1 — HERO ═══ */}
-      <section className="container py-20 lg:py-32">
-        <div className="reveal mx-auto max-w-3xl text-center">
-          <h1 className="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            Chega de perder serviço por falta{" "}
-            <span className="text-primary">do mecânico certo.</span>
+      <section className="relative overflow-hidden border-b border-border bg-gradient-to-b from-primary/5 via-background to-background py-24 lg:py-36">
+        <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
+        <div className="absolute -bottom-32 -left-32 h-80 w-80 rounded-full bg-primary/3 blur-3xl" />
+
+        <div className="reveal container relative mx-auto max-w-4xl text-center">
+          <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
+            100% gratuito para oficinas
+          </span>
+
+          <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+            Precisa de mecânico?{" "}
+            <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Encontre em horas, não dias.</span>
           </h1>
-          <p className="mt-6 text-lg leading-relaxed text-muted-foreground sm:text-xl">
-            O MecânicoApp conecta sua oficina com profissionais autônomos verificados e especializados
-            — disponíveis quando você precisar, para o serviço que você precisar.
+
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
+            Publique uma demanda, receba propostas de mecânicos verificados e escolha o melhor profissional para o serviço. Sem vínculo CLT, sem dor de cabeça.
           </p>
+
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            {["Profissionais verificados", "Especialidade sob demanda", "Gratuito para oficinas"].map((b) => (
+            {["Perfis verificados", "Especialistas sob demanda", "Sem custo para a oficina"].map((b) => (
               <span key={b} className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
                 <CheckCircle2 className="h-3.5 w-3.5" /> {b}
               </span>
             ))}
           </div>
+
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Button size="lg" className="gap-2 text-base" asChild>
-              <Link to="/cadastro/oficina">Encontrar mecânicos agora <ArrowRight className="h-4 w-4" /></Link>
+            <Button size="lg" className="h-13 gap-2 px-8 text-base shadow-lg shadow-primary/25" asChild>
+              <Link to="/cadastro/oficina">Cadastrar minha oficina <ArrowRight className="h-4 w-4" /></Link>
             </Button>
-            <Button size="lg" variant="outline" className="gap-2 text-base" asChild>
-              <a href="#confianca">Ver como funciona <ArrowDown className="h-4 w-4" /></a>
+            <Button size="lg" variant="outline" className="h-13 gap-2 px-8 text-base" asChild>
+              <a href="#confianca">Como funciona <ArrowDown className="h-4 w-4" /></a>
             </Button>
           </div>
         </div>
