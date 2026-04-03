@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
 
 export type UserRole = "oficina" | "mecanico" | "admin";
 
