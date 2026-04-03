@@ -14,14 +14,10 @@ const Precos = () => (
           <Wrench className="h-7 w-7 text-primary" />
           <span className="font-display text-xl font-bold">MecânicoApp</span>
         </Link>
-        <div className="hidden items-center gap-6 md:flex">
-          <Link to="/#como-funciona" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Como funciona</Link>
-          <Link to="/precos" className="text-sm font-medium text-foreground">Preços</Link>
-          <Link to="/sobre" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Sobre</Link>
-        </div>
-        <div className="flex items-center gap-3">
-          <Button variant="outline" size="sm" asChild><Link to="/login">Entrar</Link></Button>
-          <Button size="sm" asChild><Link to="/register">Cadastrar</Link></Button>
+        <div className="flex items-center">
+          <Button variant="outline" size="sm" asChild>
+            <Link to="/login">Entrar</Link>
+          </Button>
         </div>
       </nav>
     </header>

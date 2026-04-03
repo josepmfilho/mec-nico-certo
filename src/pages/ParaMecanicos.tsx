@@ -64,16 +64,9 @@ const ParaMecanicos = () => {
             <Wrench className="h-7 w-7 text-primary" />
             <span className="font-display text-xl font-bold">MecânicoApp</span>
           </Link>
-          <div className="hidden items-center gap-6 md:flex">
-            <Link to="/para-oficinas" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Para oficinas</Link>
-            <Link to="/para-mecanicos" className="text-sm font-medium text-foreground transition-colors">Para mecânicos</Link>
-            <Link to="/precos" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Preços</Link>
-            <Link to="/sobre" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Sobre</Link>
-          </div>
-          <div className="flex items-center gap-3">
-            <Button variant="outline" size="sm" asChild><Link to="/login">Entrar</Link></Button>
-            <Button size="sm" className="bg-mecanico hover:bg-mecanico/90 text-mecanico-foreground" asChild>
-              <Link to="/cadastro/mecanico">Cadastrar</Link>
+          <div className="flex items-center">
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/login">Entrar</Link>
             </Button>
           </div>
         </nav>
