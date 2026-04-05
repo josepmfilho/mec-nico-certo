@@ -2,21 +2,38 @@ import { createContext, useContext, useState, useCallback, type ReactNode } from
 
 export type UserRole = "oficina" | "mecanico" | "admin";
 
-interface User {
+export interface UserProfile {
+  cpf?: string;
+  whatsapp?: string;
+  experiencia?: string;
+  especialidades?: string[];
+  cep?: string;
+  cidade?: string;
+  raio?: string;
+  tipoChavePix?: string;
+  chavePix?: string;
+  statusDocumentos?: "pendente" | "solicitado" | "enviado";
+  documentosSolicitados?: string[];
+  dataCadastro?: string;
+}
+
+export interface User {
   id: string;
   email: string;
   name: string;
   role: UserRole;
   approved: boolean;
+  profile?: UserProfile;
 }
 
 interface AuthContextType {
   user: User | null;
   isLoading: boolean;
   login: (email: string, password: string) => Promise<void>;
-  register: (email: string, password: string, name: string, role: UserRole) => Promise<void>;
+  register: (email: string, password: string, name: string, role: UserRole, profile?: UserProfile) => Promise<void>;
   logout: () => void;
   approveUser: (userId: string) => void;
+  requestDocuments: (userId: string, docs: string[]) => void;
   getPendingMecanicos: () => User[];
 }
 
