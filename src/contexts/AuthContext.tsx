@@ -2,21 +2,38 @@ import { createContext, useContext, useState, useCallback, type ReactNode } from
 
 export type UserRole = "oficina" | "mecanico" | "admin";
 
-interface User {
+export interface UserProfile {
+  cpf?: string;
+  whatsapp?: string;
+  experiencia?: string;
+  especialidades?: string[];
+  cep?: string;
+  cidade?: string;
+  raio?: string;
+  tipoChavePix?: string;
+  chavePix?: string;
+  statusDocumentos?: "pendente" | "solicitado" | "enviado";
+  documentosSolicitados?: string[];
+  dataCadastro?: string;
+}
+
+export interface User {
   id: string;
   email: string;
   name: string;
   role: UserRole;
   approved: boolean;
+  profile?: UserProfile;
 }
 
 interface AuthContextType {
   user: User | null;
   isLoading: boolean;
   login: (email: string, password: string) => Promise<void>;
-  register: (email: string, password: string, name: string, role: UserRole) => Promise<void>;
+  register: (email: string, password: string, name: string, role: UserRole, profile?: UserProfile) => Promise<void>;
   logout: () => void;
   approveUser: (userId: string) => void;
+  requestDocuments: (userId: string, docs: string[]) => void;
   getPendingMecanicos: () => User[];
 }
 
@@ -119,7 +136,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(nextUser);
   }, []);
 
-  const register = useCallback(async (email: string, _password: string, name: string, role: UserRole) => {
+  const register = useCallback(async (email: string, _password: string, name: string, role: UserRole, profile?: UserProfile) => {
     const normalizedEmail = email.trim().toLowerCase();
     const users = readUsers();
     const existingUser = users.find((storedUser) => storedUser.email.toLowerCase() === normalizedEmail);
@@ -130,6 +147,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       name,
       role,
       approved: role !== "mecanico",
+      profile: {
+        ...profile,
+        dataCadastro: new Date().toISOString(),
+        statusDocumentos: "pendente",
+      },
     };
 
     saveUsers(upsertUser(users, nextUser));
@@ -169,8 +191,25 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [user?.id]);
 
+  const requestDocuments = useCallback((userId: string, docs: string[]) => {
+    const users = readUsers();
+    const updatedUsers = users.map((storedUser) =>
+      storedUser.id === userId
+        ? {
+            ...storedUser,
+            profile: {
+              ...storedUser.profile,
+              statusDocumentos: "solicitado" as const,
+              documentosSolicitados: docs,
+            },
+          }
+        : storedUser,
+    );
+    saveUsers(updatedUsers);
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user, isLoading, login, register, logout, approveUser, getPendingMecanicos }}>
+    <AuthContext.Provider value={{ user, isLoading, login, register, logout, approveUser, requestDocuments, getPendingMecanicos }}>
       {children}
     </AuthContext.Provider>
   );

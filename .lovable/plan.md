@@ -1,33 +1,31 @@
-
-
 ## Problema
 
-A Landing page tem CTAs apontando para rotas inexistentes (`/cadastro/oficina`, `/cadastro/mecanico`, `/sobre`, `/termos`, `/privacidade`). O App.tsx só tem `/register`.
+A tela de aprovação mostra apenas nome e e-mail — não exibe os dados que o mecânico preencheu no cadastro (CPF, WhatsApp, especialidades, experiência, localização, foto, chave PIX). Sem isso, o admin não consegue analisar o perfil.
 
 ## Plano
 
-### 1. Criar rotas de cadastro específicas por perfil
+### 1. Salvar dados completos do cadastro no localStorage
 
-- Adicionar `/cadastro/oficina` e `/cadastro/mecanico` no `App.tsx`, ambos renderizando o componente `Register` mas passando o role pré-selecionado via prop ou URL param
-- Alternativa mais simples: redirecionar `/cadastro/oficina` → `/register?role=oficina` e `/cadastro/mecanico` → `/register?role=mecanico`
+No `CadastroMecanico.tsx`, ao fazer `register()`, salvar também os dados extras (CPF, WhatsApp, experiência, especialidades, CEP, cidade, raio, chave PIX) no objeto do usuário dentro do storage.
 
-### 2. Atualizar Register.tsx
+### 2. Redesenhar a tela AdminAprovacao
 
-- Ler o query param `role` da URL e pré-selecionar o perfil correspondente automaticamente
+Substituir os cards simples por um layout com **ficha completa do candidato**:
 
-### 3. Criar páginas placeholder para rotas faltantes
+- **Dados pessoais**: Nome, CPF, WhatsApp, E-mail, Anos de experiência
+- **Localização**: CEP, Cidade, Raio de atendimento
+- **Especialidades**: Lista de badges com as skills selecionadas
+- **Dados de pagamento**: Tipo e chave PIX
+- **Foto de perfil**: Placeholder ou foto enviada
+- **Ações**: Botão "Aprovar", "Solicitar documentos" e "Reprovar"
 
-- `/sobre` → página "Sobre" com o texto da história do fundador
-- `/termos` e `/privacidade` → páginas placeholder simples
+### 3. Adicionar botão "Solicitar documentos"
 
-### 4. Registrar todas as novas rotas no App.tsx
-
-Adicionar as rotas: `/cadastro/oficina`, `/cadastro/mecanico`, `/sobre`, `/termos`, `/privacidade`
+- Ao clicar, abre modal pedindo quais documentos faltam (ex: RG, CNH, comprovante de endereço, certificados)
+- Registra status como "Documentos pendentes" no localStorage
+- Toast de confirmação
 
 ### Arquivos modificados
-- `src/App.tsx` — novas rotas
-- `src/pages/Register.tsx` — ler role da URL
-- `src/pages/Sobre.tsx` — nova página
-- `src/pages/Termos.tsx` — nova página
-- `src/pages/Privacidade.tsx` — nova página
-
+- `src/pages/cadastro/CadastroMecanico.tsx` — salvar dados extras
+- `src/pages/admin/AdminAprovacao.tsx` — redesenhar com ficha completa
+- `src/contexts/AuthContext.tsx` — expandir tipo User com campos opcionais
