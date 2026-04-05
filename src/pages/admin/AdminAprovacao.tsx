@@ -36,9 +36,13 @@ const AdminAprovacao = () => {
 
   const reject = () => {
     if (!motivo.trim() || !rejectId) return;
-    // Remove from pending list
+
     const updated = pending.filter((x) => x.id !== rejectId);
+    const savedUsers: PendingUser[] = JSON.parse(localStorage.getItem("mecanico_users") || "[]");
+    const nextUsers = savedUsers.filter((storedUser) => storedUser.id !== rejectId);
+
     localStorage.setItem("pending_mecanicos", JSON.stringify(updated));
+    localStorage.setItem("mecanico_users", JSON.stringify(nextUsers));
     setPending(updated);
     setRejectId(null);
     setMotivo("");
