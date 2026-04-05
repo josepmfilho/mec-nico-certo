@@ -57,7 +57,17 @@ const CadastroMecanico = () => {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      await register(email, senha, nome, "mecanico");
+      await register(email, senha, nome, "mecanico", {
+        cpf,
+        whatsapp,
+        experiencia,
+        especialidades: specialties,
+        cep,
+        cidade,
+        raio,
+        tipoChavePix,
+        chavePix,
+      });
       toast({ title: "Cadastro enviado!", description: "Seu perfil será analisado pela equipe." });
       navigate("/mecanico/aguardando-aprovacao");
     } catch {
