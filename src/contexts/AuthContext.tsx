@@ -136,7 +136,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(nextUser);
   }, []);
 
-  const register = useCallback(async (email: string, _password: string, name: string, role: UserRole) => {
+  const register = useCallback(async (email: string, _password: string, name: string, role: UserRole, profile?: UserProfile) => {
     const normalizedEmail = email.trim().toLowerCase();
     const users = readUsers();
     const existingUser = users.find((storedUser) => storedUser.email.toLowerCase() === normalizedEmail);
@@ -147,6 +147,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       name,
       role,
       approved: role !== "mecanico",
+      profile: {
+        ...profile,
+        dataCadastro: new Date().toISOString(),
+        statusDocumentos: "pendente",
+      },
     };
 
     saveUsers(upsertUser(users, nextUser));
@@ -186,8 +191,25 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [user?.id]);
 
+  const requestDocuments = useCallback((userId: string, docs: string[]) => {
+    const users = readUsers();
+    const updatedUsers = users.map((storedUser) =>
+      storedUser.id === userId
+        ? {
+            ...storedUser,
+            profile: {
+              ...storedUser.profile,
+              statusDocumentos: "solicitado" as const,
+              documentosSolicitados: docs,
+            },
+          }
+        : storedUser,
+    );
+    saveUsers(updatedUsers);
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user, isLoading, login, register, logout, approveUser, getPendingMecanicos }}>
+    <AuthContext.Provider value={{ user, isLoading, login, register, logout, approveUser, requestDocuments, getPendingMecanicos }}>
       {children}
     </AuthContext.Provider>
   );
