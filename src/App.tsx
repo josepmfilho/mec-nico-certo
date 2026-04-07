@@ -19,6 +19,8 @@ import MecanicoAguardandoAprovacao from "./pages/mecanico/MecanicoAguardandoApro
 import MecanicoDemandaDetalhe from "./pages/mecanico/MecanicoDemandaDetalhe";
 import MecanicoFinanceiro from "./pages/mecanico/MecanicoFinanceiro";
 import MecanicoReputacao from "./pages/mecanico/MecanicoReputacao";
+import MecanicoMapa from "./pages/mecanico/MecanicoMapa";
+import MecanicoPerfil from "./pages/mecanico/MecanicoPerfil";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminUsuarios from "./pages/admin/AdminUsuarios";
@@ -67,6 +69,9 @@ const App = () => (
             <Route path="/mecanico/demandas/:id" element={<ProtectedRoute allowedRoles={["mecanico"]}><MecanicoDemandaDetalhe /></ProtectedRoute>} />
             <Route path="/mecanico/financeiro" element={<ProtectedRoute allowedRoles={["mecanico"]}><MecanicoFinanceiro /></ProtectedRoute>} />
             <Route path="/mecanico/reputacao" element={<ProtectedRoute allowedRoles={["mecanico"]}><MecanicoReputacao /></ProtectedRoute>} />
+            <Route path="/mecanico/mapa" element={<ProtectedRoute allowedRoles={["mecanico"]}><MecanicoMapa /></ProtectedRoute>} />
+            <Route path="/mecanico/perfil" element={<ProtectedRoute allowedRoles={["mecanico"]}><MecanicoPerfil /></ProtectedRoute>} />
+            <Route path="/mecanico/chat" element={<ProtectedRoute allowedRoles={["mecanico"]}><Chat /></ProtectedRoute>} />
             <Route path="/mecanico/chat/:id" element={<ProtectedRoute allowedRoles={["mecanico"]}><Chat /></ProtectedRoute>} />
 
             {/* Admin Routes */}
