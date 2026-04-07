@@ -1,7 +1,8 @@
-import { DashboardLayout } from "@/components/DashboardLayout";
+import { MecanicoLayout } from "@/components/MecanicoLayout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Star } from "lucide-react";
+import { motion } from "framer-motion";
 
 const DISTRIBUTION = [
   { stars: 5, count: 24, pct: 63 },
@@ -14,74 +15,80 @@ const DISTRIBUTION = [
 const REVIEWS = [
   { oficina: "Auto Center Silva", date: "18/03/2025", stars: 5, comment: "Excelente profissional. Trocou a embreagem em menos tempo que o previsto. Super organizado e limpo." },
   { oficina: "Oficina do Zé", date: "15/03/2025", stars: 5, comment: "Fez a revisão completa com atenção a cada detalhe. Recomendo fortemente." },
-  { oficina: "Mecânica Express", date: "12/03/2025", stars: 4, comment: "Bom serviço. Chegou pontual e resolveu o problema. Poderia ter comunicado melhor o andamento." },
-  { oficina: "Car Fix Ltda", date: "08/03/2025", stars: 5, comment: "Profissional nota 10. Encontrou um problema adicional e me avisou antes de mexer. Transparência total." },
-  { oficina: "RefriCar", date: "05/03/2025", stars: 4, comment: "Serviço bem feito. Demorou um pouco mais que o estimado mas o resultado ficou perfeito." },
-  { oficina: "Auto Center Silva", date: "01/03/2025", stars: 5, comment: "Segunda vez que contrato. Mesma qualidade de sempre. Já virou nosso mecânico de confiança." },
-  { oficina: "Oficina do Zé", date: "25/02/2025", stars: 2, comment: "Chegou 40 minutos atrasado e não avisou. O serviço em si ficou ok mas a pontualidade precisa melhorar." },
+  { oficina: "Mecânica Express", date: "12/03/2025", stars: 4, comment: "Bom serviço. Chegou pontual e resolveu o problema." },
+  { oficina: "Car Fix Ltda", date: "08/03/2025", stars: 5, comment: "Profissional nota 10. Encontrou um problema adicional e me avisou antes de mexer." },
+  { oficina: "RefriCar", date: "05/03/2025", stars: 4, comment: "Serviço bem feito. O resultado ficou perfeito." },
+  { oficina: "Auto Center Silva", date: "01/03/2025", stars: 5, comment: "Segunda vez que contrato. Mesma qualidade de sempre." },
 ];
 
 const MecanicoReputacao = () => (
-  <DashboardLayout>
-    <div className="space-y-6 max-w-3xl">
-      <div>
-        <h2 className="font-display text-2xl font-bold">Reputação</h2>
-        <p className="text-muted-foreground">Sua avaliação e feedback das oficinas</p>
-      </div>
-
+  <MecanicoLayout>
+    <div className="px-4 py-6 space-y-5 lg:px-6 lg:max-w-2xl lg:mx-auto">
       {/* Average */}
-      <Card>
-        <CardContent className="p-6 flex flex-col items-center sm:flex-row sm:gap-8">
-          <div className="text-center mb-4 sm:mb-0">
-            <p className="font-display text-5xl font-bold text-mecanico">4.8</p>
-            <div className="flex items-center gap-0.5 mt-1 justify-center">
-              {[1, 2, 3, 4, 5].map((s) => (
-                <Star key={s} className={`h-5 w-5 ${s <= 4 ? "text-warning fill-warning" : "text-warning/50 fill-warning/50"}`} />
-              ))}
-            </div>
-            <p className="text-sm text-muted-foreground mt-1">38 avaliações</p>
-          </div>
-          <div className="flex-1 space-y-2 w-full">
-            {DISTRIBUTION.map((d) => (
-              <div key={d.stars} className="flex items-center gap-2">
-                <span className="text-sm w-3 text-right">{d.stars}</span>
-                <Star className="h-3.5 w-3.5 text-warning fill-warning" />
-                <Progress value={d.pct} className="flex-1 h-2" />
-                <span className="text-xs text-muted-foreground w-6 text-right">{d.count}</span>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Reviews */}
-      <div className="space-y-3">
-        {REVIEWS.map((r, i) => (
-          <Card key={i}>
-            <CardContent className="p-5">
-              <div className="flex items-start justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center font-display text-xs font-bold text-primary">
-                    {r.oficina.split(" ").map(n => n[0]).join("").slice(0, 2)}
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold">{r.oficina}</p>
-                    <p className="text-xs text-muted-foreground">{r.date}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-0.5">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <Card className="border-0 shadow-md">
+          <CardContent className="p-5">
+            <div className="flex items-center gap-6">
+              <div className="text-center">
+                <p className="text-4xl font-bold text-[#065F46]">4.8</p>
+                <div className="flex items-center gap-0.5 mt-1 justify-center">
                   {[1, 2, 3, 4, 5].map((s) => (
-                    <Star key={s} className={`h-3.5 w-3.5 ${s <= r.stars ? "text-warning fill-warning" : "text-muted-foreground/30"}`} />
+                    <Star key={s} className={`h-4 w-4 ${s <= 4 ? "text-yellow-500 fill-yellow-500" : "text-yellow-500/40 fill-yellow-500/40"}`} />
                   ))}
                 </div>
+                <p className="text-xs text-muted-foreground mt-1">38 avaliações</p>
               </div>
-              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{r.comment}</p>
-            </CardContent>
-          </Card>
+              <div className="flex-1 space-y-1.5">
+                {DISTRIBUTION.map((d) => (
+                  <div key={d.stars} className="flex items-center gap-2">
+                    <span className="text-xs w-3 text-right">{d.stars}</span>
+                    <Star className="h-3 w-3 text-yellow-500 fill-yellow-500" />
+                    <Progress value={d.pct} className="flex-1 h-1.5 [&>div]:bg-[#065F46]" />
+                    <span className="text-[10px] text-muted-foreground w-5 text-right">{d.count}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
+
+      {/* Reviews */}
+      <h2 className="text-[16px] font-bold">Avaliações</h2>
+      <div className="space-y-2">
+        {REVIEWS.map((r, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.04 }}
+          >
+            <Card className="border-0 shadow-sm">
+              <CardContent className="p-4">
+                <div className="flex items-start justify-between mb-2">
+                  <div className="flex items-center gap-2.5">
+                    <div className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center font-display text-xs font-bold text-primary">
+                      {r.oficina.split(" ").map(n => n[0]).join("").slice(0, 2)}
+                    </div>
+                    <div>
+                      <p className="text-[14px] font-semibold">{r.oficina}</p>
+                      <p className="text-[11px] text-muted-foreground">{r.date}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-0.5">
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <Star key={s} className={`h-3 w-3 ${s <= r.stars ? "text-yellow-500 fill-yellow-500" : "text-muted-foreground/20"}`} />
+                    ))}
+                  </div>
+                </div>
+                <p className="text-[13px] text-muted-foreground leading-relaxed">{r.comment}</p>
+              </CardContent>
+            </Card>
+          </motion.div>
         ))}
       </div>
     </div>
-  </DashboardLayout>
+  </MecanicoLayout>
 );
 
 export default MecanicoReputacao;
