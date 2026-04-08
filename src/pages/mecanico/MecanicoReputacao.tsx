@@ -1,7 +1,7 @@
 import { MecanicoLayout } from "@/components/MecanicoLayout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Star } from "lucide-react";
+import { Star, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
 
 const DISTRIBUTION = [
@@ -23,9 +23,15 @@ const REVIEWS = [
 
 const MecanicoReputacao = () => (
   <MecanicoLayout>
-    <div className="px-4 py-6 space-y-5 lg:px-6 lg:max-w-2xl lg:mx-auto">
-      {/* Average */}
+    <div className="px-4 py-6 space-y-5 lg:px-6 lg:max-w-2xl lg:mx-auto pb-8">
+      {/* Header */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <h1 className="text-xl font-bold mb-1">Minha reputação</h1>
+        <p className="text-sm text-muted-foreground">Sua nota é visível para todas as oficinas</p>
+      </motion.div>
+
+      {/* Average */}
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}>
         <Card className="border-0 shadow-md">
           <CardContent className="p-5">
             <div className="flex items-center gap-6">
@@ -36,38 +42,45 @@ const MecanicoReputacao = () => (
                     <Star key={s} className={`h-4 w-4 ${s <= 4 ? "text-yellow-500 fill-yellow-500" : "text-yellow-500/40 fill-yellow-500/40"}`} />
                   ))}
                 </div>
-                <p className="text-xs text-muted-foreground mt-1">38 avaliações</p>
+                <p className="text-xs text-muted-foreground mt-1.5">38 avaliações</p>
               </div>
-              <div className="flex-1 space-y-1.5">
+              <div className="flex-1 space-y-2">
                 {DISTRIBUTION.map((d) => (
                   <div key={d.stars} className="flex items-center gap-2">
-                    <span className="text-xs w-3 text-right">{d.stars}</span>
+                    <span className="text-xs w-3 text-right font-medium">{d.stars}</span>
                     <Star className="h-3 w-3 text-yellow-500 fill-yellow-500" />
-                    <Progress value={d.pct} className="flex-1 h-1.5 [&>div]:bg-[#065F46]" />
-                    <span className="text-[10px] text-muted-foreground w-5 text-right">{d.count}</span>
+                    <Progress value={d.pct} className="flex-1 h-2 [&>div]:bg-[#065F46]" />
+                    <span className="text-[11px] text-muted-foreground w-6 text-right">{d.count}</span>
                   </div>
                 ))}
               </div>
+            </div>
+            <div className="mt-4 pt-3 border-t border-border flex items-center gap-2 text-sm text-[#065F46]">
+              <TrendingUp className="h-4 w-4" />
+              <span className="font-medium">Sua nota subiu 0.2 este mês</span>
             </div>
           </CardContent>
         </Card>
       </motion.div>
 
       {/* Reviews */}
-      <h2 className="text-[16px] font-bold">Avaliações</h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-[16px] font-bold">Avaliações recentes</h2>
+        <span className="text-xs text-muted-foreground">{REVIEWS.length} total</span>
+      </div>
       <div className="space-y-2">
         {REVIEWS.map((r, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.04 }}
+            transition={{ delay: 0.1 + i * 0.04 }}
           >
-            <Card className="border-0 shadow-sm">
+            <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
               <CardContent className="p-4">
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-2.5">
-                    <div className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center font-display text-xs font-bold text-primary">
+                    <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center font-display text-xs font-bold text-primary">
                       {r.oficina.split(" ").map(n => n[0]).join("").slice(0, 2)}
                     </div>
                     <div>
@@ -77,7 +90,7 @@ const MecanicoReputacao = () => (
                   </div>
                   <div className="flex items-center gap-0.5">
                     {[1, 2, 3, 4, 5].map((s) => (
-                      <Star key={s} className={`h-3 w-3 ${s <= r.stars ? "text-yellow-500 fill-yellow-500" : "text-muted-foreground/20"}`} />
+                      <Star key={s} className={`h-3.5 w-3.5 ${s <= r.stars ? "text-yellow-500 fill-yellow-500" : "text-muted-foreground/20"}`} />
                     ))}
                   </div>
                 </div>
