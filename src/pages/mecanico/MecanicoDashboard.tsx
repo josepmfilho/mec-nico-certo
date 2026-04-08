@@ -4,7 +4,7 @@ import { MecanicoLayout } from "@/components/MecanicoLayout";
 import { useAuth } from "@/contexts/AuthContext";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+
 import { Switch } from "@/components/ui/switch";
 import { Wallet, Clock, MapPin, Star, Bell, ChevronRight, Zap, TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";

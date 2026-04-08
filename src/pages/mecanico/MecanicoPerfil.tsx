@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { cn } from "@/lib/utils";
 import { Star, Camera, MapPin, Award, CreditCard, FileText, ChevronRight, LogOut, Edit, CheckCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
